@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/product");
 const authenticateToken = require("../middleware/auth");
+const bcrypt = require("bcryptjs");
 
 // Routes for products
 router.get("/products", productController.getAllProducts); // Get all products

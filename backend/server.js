@@ -6,6 +6,7 @@ const authRoutes = require("./routes/user"); // Import auth routes
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
 const app = express();
+const bcrypt = require("bcryptjs");
 
 // Middleware
 app.use(cors());
@@ -35,3 +36,10 @@ sequelize
   .catch((err) => {
     console.error("❌ MySQL connection failed:", err);
   });
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.PORT || 5000, () => {
+    console.log(`🚀 Server running on port ${process.env.PORT || 5000}`);
+  });
+}
+
+module.exports = app;

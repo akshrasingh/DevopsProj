@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: aksflora-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Akriti@200329
+      MYSQL_DATABASE: aksflora
+      MYSQL_USER: akshraflora
+      MYSQL_PASSWORD: Akriti@200329
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+    container_name: aksflora-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: mysql
+      DB_USER: akshraflora       # Corrected to match the MySQL user
+      DB_PASSWORD: Akriti@200329    # Corrected to match the MySQL password
+      DB_NAME: aksflora
+    depends_on:
+      - mysql
+    command: sh -c "sleep 10 && npm run dev"
+
+  frontend:
+    build: 
+      context: ./frontend
+    container_name: aksflora-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mysql-data:
