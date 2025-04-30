@@ -1,0 +1,94 @@
+/* Basic styling for the homepage */
+.homepage {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar li {
+    margin: 0 15px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  .navbar a:hover {
+    color: #f2b900;  /* Hover effect for navbar links */
+  }
+  
+  /* Hero Section with Background Image */
+  .hero {
+    background-image: url('https://www.venuereport.com/media/cache/resolve/venue_roundup_single_image_flex/uploads/+0Regular_Roundup/2018/5-May/FloralShops/TranglyBlumen-_s00__-01.jpg');  /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    height: 50vh;  /* 50% of the viewport height */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-text h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+  
+  .hero-text p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  /* About Section Styling */
+  .about {
+    background-color: #f8f8f8;
+    padding: 50px 20px;
+  }
+  
+  .about h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Cart Logo Section */
+  .cart-logo {
+    margin-top: 50px;
+  }
+  
+  .cart-logo img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cart-logo p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  .cart-logo a {
+    text-decoration: none;
+    color: #333;
+  }
+  
