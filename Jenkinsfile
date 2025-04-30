@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml build'  // Use docker-compose for better compatibility
+                    sh '$HOME/docker-compose -f docker-compose.yml build'  // Use the full path to docker-compose
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Run Containers') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml up -d'  // Same here for docker-compose
+                    sh '$HOME/docker-compose -f docker-compose.yml up -d'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    sh 'cd backend && npm run test'  // Ensure you're in the correct directory for your tests
+                    sh 'cd backend && npm run test'
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml down'  // Cleanup using docker-compose
+                    sh '$HOME/docker-compose -f docker-compose.yml down'
                 }
             }
         }
