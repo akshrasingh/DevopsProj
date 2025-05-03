@@ -8,13 +8,7 @@ pipeline {
                 git 'https://github.com/akshrasingh/DevopsProj.git'
             }
         }
-        stage('Cleanup Before Start') {
-            steps {
-                script {
-                    sh 'docker-compose -f docker-compose.yml down || true'
-                }
-            }
-        }
+       
 
         stage('Build Docker Images') {
             steps {
@@ -29,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Run docker-compose up to start containers
-                    docker rm -f aksflora-mysql
+                    
                     sh 'docker-compose -f docker-compose.yml up -d'
                 }
             }

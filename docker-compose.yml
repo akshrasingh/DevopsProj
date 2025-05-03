@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8
-    container_name: aksflora-mysql-$(date +%s)
+    container_name: aksflora-mysql
 
     restart: always
     environment:
@@ -19,7 +19,7 @@ services:
   backend:
     build:
       context: ./backend
-    container_name: aksflora-backend-$(date +%s)
+    container_name: aksflora-backend
     restart: always
     ports:
       - "5000:5000"
@@ -35,8 +35,7 @@ services:
   frontend:
     build: 
       context: ./frontend
-    container_name: aksflora-frontend-$(date +%s)
-    restart: always
+    container_name: aksflora-frontend
     ports:
       - "3000:3000"
     depends_on:
