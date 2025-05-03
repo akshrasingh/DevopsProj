@@ -2,9 +2,17 @@ pipeline {
     agent any
 
     stages {
+        
         stage('Checkout') {
             steps {
                 git 'https://github.com/akshrasingh/DevopsProj.git'
+            }
+        }
+        stage('Cleanup Before Start') {
+            steps {
+                script {
+                    sh 'docker-compose -f docker-compose.yml down || true'
+                }
             }
         }
 
@@ -47,7 +55,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    // Cleanup using docker-compose down
+                    
                     sh 'docker-compose -f docker-compose.yml down'
                 }
             }
