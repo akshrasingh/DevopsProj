@@ -8,10 +8,11 @@ pipeline {
             }
         }
 
-       stage('Build Docker Images') {
+        stage('Build Docker Images') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml build || true'  // Always return success even if there's an error, so we can see logs
+                    // Run docker-compose build
+                    sh 'docker-compose -f docker-compose.yml build'
                 }
             }
         }
@@ -19,7 +20,26 @@ pipeline {
         stage('Run Containers') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml up -d || true'
+                    // Run docker-compose up to start containers
+                    sh 'docker-compose -f docker-compose.yml up -d'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    // Run tests inside the backend container and save output to a file
+                    sh 'cd backend && npm run test > test_results.log'
+                }
+            }
+        }
+
+        stage('Save Test Results') {
+            steps {
+                script {
+                    // Save the test results to a file (you can use an artifact or a custom location)
+                    sh 'cp backend/test_results.log ./test_results/test_results.log'
                 }
             }
         }
@@ -27,7 +47,8 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml down || true'
+                    // Cleanup using docker-compose down
+                    sh 'docker-compose -f docker-compose.yml down'
                 }
             }
         }
