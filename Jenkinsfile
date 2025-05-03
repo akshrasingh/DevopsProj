@@ -29,6 +29,7 @@ pipeline {
             steps {
                 script {
                     // Run docker-compose up to start containers
+                    docker rm -f aksflora-mysql
                     sh 'docker-compose -f docker-compose.yml up -d'
                 }
             }

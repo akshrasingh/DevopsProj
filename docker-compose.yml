@@ -3,7 +3,8 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8
-    container_name: aksflora-mysql
+    container_name: aksflora-mysql-$(date +%s)
+
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Akriti@200329
@@ -18,7 +19,7 @@ services:
   backend:
     build:
       context: ./backend
-    container_name: aksflora-backend
+    container_name: aksflora-backend-$(date +%s)
     restart: always
     ports:
       - "5000:5000"
@@ -34,7 +35,7 @@ services:
   frontend:
     build: 
       context: ./frontend
-    container_name: aksflora-frontend
+    container_name: aksflora-frontend-$(date +%s)
     restart: always
     ports:
       - "3000:3000"
