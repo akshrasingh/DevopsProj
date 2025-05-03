@@ -12,7 +12,7 @@ services:
       MYSQL_USER: akshraflora
       MYSQL_PASSWORD: Akriti@200329
     ports:
-      - "3306:3306"
+      - "3308:3306"
     volumes:
       - mysql-data:/var/lib/mysql
 
