@@ -29,8 +29,7 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-    
+        
         stage('Run Tests') {
             steps {
                 script {
@@ -40,7 +39,8 @@ pipeline {
                     sh 'docker exec -t aksflora-backend npm run test > test_results.log'
             }
         }
-    }
+        }
+    
 
         stage('Save Test Results') {
             steps {
@@ -60,7 +60,6 @@ pipeline {
             }
         }
     }
-}
 }
 
 
