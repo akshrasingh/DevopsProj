@@ -30,13 +30,17 @@ pipeline {
         }
 
         stage('Run Tests') {
+    
+        stage('Run Tests') {
             steps {
                 script {
-                    // Run tests inside the backend container and save output to a file
-                    sh 'cd backend && npm run test > test_results.log'
-                }
+                // Wait for backend to be fully up
+                    sh 'sleep 10'  // Optional: Sleep for 10 seconds to ensure backend is fully started
+                    // Run tests inside the backend container
+                    sh 'docker exec -t aksflora-backend npm run test > test_results.log'
             }
         }
+    }
 
         stage('Save Test Results') {
             steps {
@@ -57,3 +61,6 @@ pipeline {
         }
     }
 }
+}
+
+
