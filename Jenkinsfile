@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_TOKEN = credentials('sonar-token') // Jenkins credential of type "Secret text"
+        SONARQUBE_TOKEN = credentials('token') // Jenkins credential of type "Secret text"
     }
 
     stages {
