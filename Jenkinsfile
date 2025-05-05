@@ -8,12 +8,10 @@ pipeline {
                 git 'https://github.com/akshrasingh/DevopsProj.git'
             }
         }
-       
 
         stage('Build Docker Images') {
             steps {
                 script {
-                    // Run docker-compose build
                     sh 'docker-compose -f docker-compose.yml build'
                 }
             }
@@ -22,33 +20,28 @@ pipeline {
         stage('Run Containers') {
             steps {
                 script {
-                    // Run docker-compose up to start containers
-                    
                     sh 'docker-compose -f docker-compose.yml up -d'
                 }
             }
         }
 
-        
         stage('Run Tests') {
             steps {
                 script {
-                // Wait for backend to be fully up
-                    sh 'sleep 10'  // Optional: Sleep for 10 seconds to ensure backend is fully started
-                    // Run tests inside the backend container
-                    docker exec -t aksflora-backend sh -c "chmod +x node_modules/.bin/jest && npm run test" > test_results.log
-
-
+                    sh 'sleep 10'
+                    sh '''
+                        docker exec -t aksflora-backend sh -c "chmod +x node_modules/.bin/jest && npm run test" > backend/test_results.log
+                    '''
+                }
             }
         }
-        }
-    
 
         stage('Save Test Results') {
             steps {
                 script {
-                    // Save the test results to a file (you can use an artifact or a custom location)
-                    sh 'cp backend/test_results.log ./test_results/test_results.log'
+                    sh 'mkdir -p test_results'
+                    sh 'cp backend/test_results.log test_results/test_results.log'
+                    archiveArtifacts artifacts: 'test_results/test_results.log', allowEmptyArchive: true
                 }
             }
         }
@@ -56,12 +49,9 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    
                     sh 'docker-compose -f docker-compose.yml down'
                 }
             }
         }
     }
 }
-
-
