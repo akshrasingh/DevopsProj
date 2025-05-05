@@ -10,8 +10,7 @@ COPY package*.json ./
 # Install dependencies (preferably as non-root user later)
 RUN npm install
 
-# Ensure jest is available by making node_modules/.bin accessible to all users
-RUN chown -R jenkins:jenkins /app
+
 
 # Copy the rest of the app
 COPY . .
