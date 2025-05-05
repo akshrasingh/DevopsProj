@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh 'sleep 10'
                     sh '''
-                        docker exec -t aksflora-backend sh -c "chmod +x node_modules/.bin/jest && npm run test" > backend/test_results.log
+                    docker exec -t --user root aksflora-backend sh -c "npm run test" > backend/test_results.log
                     '''
                 }
             }
