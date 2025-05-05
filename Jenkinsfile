@@ -30,8 +30,12 @@ pipeline {
                 script {
                     sh 'sleep 10'
                     sh '''
-                    docker exec -t --user root aksflora-backend sh -c "npm run test" > backend/test_results.log
-                    '''
+                
+                    docker exec -t aksflora-backend sh -c "echo 'Current user is: $(whoami)'"
+                
+                    docker exec -t --user node aksflora-backend sh -c "npm run test" > backend/test_results.log
+                '''
+
                 }
             }
         }
