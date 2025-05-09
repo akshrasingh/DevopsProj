@@ -12,10 +12,12 @@ const Login = ({ setIsAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // ✅ Hardcoded EC2 backend API endpoint
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "http://3.94.166.203:5001/api/auth/login",
         form
       );
+
       alert("✅ Login successful!");
 
       // Save token and user data to localStorage
@@ -29,7 +31,7 @@ const Login = ({ setIsAuthenticated }) => {
       navigate("/home");
     } catch (error) {
       alert("❌ Login failed");
-      console.error(error.response?.data);
+      console.error(error.response?.data || error.message);
     }
   };
 

@@ -95,7 +95,8 @@ function HomePage() {
 
         /* Hero Section */
         .hero {
-          background-image: url("https://png.pngtree.com/png-clipart/20230816/original/pngtree-colorful-vector-illustration-of-a-detailed-florist-at-a-flower-kiosk-vector-picture-image_10836319.png");
+          background-image: url("https://aksfloras3.s3.us-east-1.amazonaws.com/background.png
+");
           background-size: cover;
           background-position: center;
           height: 50vh;

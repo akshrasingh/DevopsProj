@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     dialect: "mysql",
     port: 3306, // MySQL default port
-    logging: false,
+    logging: console.log,
     dialectOptions: {
       charset: "utf8mb4", // You can try setting this to utf8mb4 for better encoding support
     },

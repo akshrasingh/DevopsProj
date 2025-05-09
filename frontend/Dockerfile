@@ -10,7 +10,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-RUN chmod +x node_modules/.bin/react-scripts
+
 
 
 # Copy the rest of the app

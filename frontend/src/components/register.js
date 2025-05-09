@@ -10,16 +10,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Using direct backend URL for the API call
+      // ✅ Hardcoded EC2 backend API endpoint
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "http://3.94.166.203:5001/api/auth/register",
         form
       );
+
       alert("✅ Registered successfully!");
       console.log(res.data);
     } catch (error) {
       alert("❌ Registration failed");
-      console.error(error.response?.data);
+      console.error(error.response?.data || error.message);
     }
   };
 
